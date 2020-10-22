@@ -1,9 +1,24 @@
 const exibeEndereco= (endereco)=> {
-    const CEP= document.getElementById("cep").value;
+    let CEP= document.getElementById("cep").value;
+    
+    let Cidade= document.getElementById("cidade");
+    Cidade.innerHTML= endereco.cidade;
+
+    let Estado= document.getElementById("estado");
+    Estado.innerHTML= endereco.estado;
+
+    let Logradouro= document.getElementById("logradouro");
+    Logradouro.innerHTML= endereco.logradouro;
+
+    let Bairro= document.getElementById("bairro");
+    Bairro.innerHTML= endereco.bairro;
+
+    let Complemento= document.getElementById("complemento");
+    Complemento.innerHTML= endereco.complemento;
 };
 
 const urlEnderecoDesejado= ()=> {
-    const urlEndereco= 'https://api.postmon.com.br/v1/cep';
+    const urlEndereco= `https://api.postmon.com.br/v1/cep/${CEP}`;
 };
 
 const iniciar= async ()=> {
