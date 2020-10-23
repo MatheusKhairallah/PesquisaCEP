@@ -1,31 +1,38 @@
-const exibeEndereco= (endereco)=> {
-    let CEP= document.getElementById("cep").value;
-    
+const exibeEndereco= (endereco)=> {    
     let Cidade= document.getElementById("cidade");
-    Cidade.innerHTML= endereco.cidade;
+    Cidade.value= endereco.cidade;
 
     let Estado= document.getElementById("estado");
-    Estado.innerHTML= endereco.estado;
+    Estado.value= endereco.estado;
 
     let Logradouro= document.getElementById("logradouro");
-    Logradouro.innerHTML= endereco.logradouro;
+    Logradouro.value= endereco.logradouro;
 
     let Bairro= document.getElementById("bairro");
-    Bairro.innerHTML= endereco.bairro;
+    Bairro.value= endereco.bairro;
 
     let Complemento= document.getElementById("complemento");
-    Complemento.innerHTML= endereco.complemento;
+    Complemento.value= endereco.complemento;
 };
 
-const urlEnderecoDesejado= ()=> {
-    const urlEndereco= `https://api.postmon.com.br/v1/cep/${CEP}`;
+const urlEnderecoDesejado= (cep)=> {
+    const urlEndereco= `https://api.postmon.com.br/v1/cep/${cep}`;
+    return urlEndereco;
 };
 
-const iniciar= async ()=> {
-    const url= urlEnderecoDesejado();
+const pesquisarCEP= async (evento)=> {
+    evento.preventDefault();
+
+    let CEP= document.getElementById("cep").value;
+    const url= urlEnderecoDesejado(CEP);
+
     const response = await fetch(url);
     const result = await response.json();
     exibeEndereco(result);
+};
+
+const iniciar= async ()=> {
+    document.getElementById('pesquisa').addEventListener('click', pesquisarCEP);
 };
 
 document.addEventListener('DOMContentLoaded', iniciar);

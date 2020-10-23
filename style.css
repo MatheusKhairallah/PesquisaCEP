@@ -7,3 +7,8 @@ form {
 form > * {
     margin: 5px;
 }
+
+p {
+    text-align: right;
+    margin-top: 5%;
+}
